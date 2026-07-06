@@ -1,0 +1,173 @@
+/* ==========================================================================
+   1. VARIÁVEIS IDEAIS PARA DARK/LIGHT MODE & RESET
+   ========================================================================== */
+:root {
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --background-color: #f8fafc;
+    --surface-color: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    
+    /* Status Colors */
+    --color-pending: #eab308;
+    --color-confirmed: #10b981;
+    --color-declined: #ef4444;
+    
+    /* Layout */
+    --sidebar-width: 260px;
+    --radius-md: 8px;
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   2. ESTRUTURA LAYOUT (GRID & FLEXBOX)
+   ========================================================================== */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--surface-color);
+    border-right: 1px solid var(--border-color);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.main-content {
+    flex: 1;
+    padding: 2.5rem;
+    overflow-y: auto;
+}
+
+/* Dashboard Grid (Perfis Cliente / Promotor) */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   3. COMPONENTES (Cards, Tabelas, Botões)
+   ========================================================================== */
+.card {
+    background: var(--surface-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.card-title {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.card-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+/* Tabelas Customizadas com CSS Grid/Flex em mente ou nativo limpo */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    background: var(--surface-color);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.custom-table th {
+    background-color: #f1f5f9;
+    padding: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.custom-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.925rem;
+}
+
+/* Badges Dinâmicos de Status */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-pending { background-color: #fef9c3; color: var(--color-pending); }
+.badge-confirmed { background-color: #d1fae5; color: var(--color-confirmed); }
+.badge-declined { background-color: #fee2e2; color: var(--color-declined); }
+
+/* Formulários e Botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.625rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}

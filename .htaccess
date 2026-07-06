@@ -1,0 +1,5 @@
+RewriteEngine On
+
+# Encaminha tudo para o document root real (public/), caso o vhost aponte para a raiz do repositório.
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]

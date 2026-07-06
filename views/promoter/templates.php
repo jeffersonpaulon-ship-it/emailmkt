@@ -1,15 +1,18 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
+
+$eventBase = '/promoter/events/' . (int) $event['id'];
 ?>
-<p><a href="/promoter/events/<?= (int) $event['id'] ?>">&larr; Voltar ao evento</a></p>
+<p><a href="<?= Url::to($eventBase) ?>">&larr; Voltar ao evento</a></p>
 <h1>Templates de e-mail — <?= View::e($event['name']) ?></h1>
 
 <div class="card">
     <h2>Novo template</h2>
     <p class="text-muted">Variáveis disponíveis: <code>{{nome}}</code>, <code>{{evento}}</code>, <code>{{link_confirmacao}}</code></p>
-    <form method="post" action="/promoter/events/<?= (int) $event['id'] ?>/templates">
+    <form method="post" action="<?= Url::to($eventBase . '/templates') ?>">
         <?= Csrf::field() ?>
         <label for="name">Nome do template</label>
         <input type="text" id="name" name="name" required>
@@ -37,7 +40,7 @@ use App\View;
                     <td><?= View::e($t['name']) ?></td>
                     <td><?= View::e($t['subject']) ?></td>
                     <td>
-                        <form method="post" action="/promoter/events/<?= (int) $event['id'] ?>/templates/<?= (int) $t['id'] ?>/delete" class="inline" onsubmit="return confirm('Remover este template?');">
+                        <form method="post" action="<?= Url::to($eventBase . '/templates/' . (int) $t['id'] . '/delete') ?>" class="inline" onsubmit="return confirm('Remover este template?');">
                             <?= Csrf::field() ?>
                             <button type="submit" class="link-button">remover</button>
                         </form>

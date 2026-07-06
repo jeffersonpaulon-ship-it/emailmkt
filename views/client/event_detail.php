@@ -1,9 +1,10 @@
 <?php
 
 use App\Models\Campaign;
+use App\Url;
 use App\View;
 ?>
-<p><a href="/client/events">&larr; Voltar aos meus eventos</a></p>
+<p><a href="<?= Url::to('/client/events') ?>">&larr; Voltar aos meus eventos</a></p>
 <h1><?= View::e($event['name']) ?></h1>
 <p class="text-muted"><?= View::e($event['description'] ?? '') ?></p>
 

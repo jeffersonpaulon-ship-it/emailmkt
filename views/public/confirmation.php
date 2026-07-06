@@ -1,6 +1,7 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
 ?>
 <!doctype html>
@@ -9,7 +10,7 @@ use App\View;
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= View::e($page['title']) ?></title>
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="<?= Url::to('/assets/style.css') ?>">
 </head>
 <body>
 <main class="public-page">
@@ -17,7 +18,7 @@ use App\View;
         <h1><?= View::e($page['title']) ?></h1>
         <?php if (!empty($page['intro_text'])): ?><p><?= nl2br(View::e($page['intro_text'])) ?></p><?php endif; ?>
 
-        <form method="post" action="/rsvp/<?= View::e($page['slug']) ?>">
+        <form method="post" action="<?= Url::to('/confirmar/' . $page['slug']) ?>">
             <?= Csrf::field() ?>
             <input type="hidden" name="t" value="<?= View::e($token) ?>">
 

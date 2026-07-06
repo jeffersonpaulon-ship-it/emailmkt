@@ -1,9 +1,12 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
+
+$eventBase = '/promoter/events/' . (int) $event['id'];
 ?>
-<p><a href="/promoter/events/<?= (int) $event['id'] ?>">&larr; Voltar ao evento</a></p>
+<p><a href="<?= Url::to($eventBase) ?>">&larr; Voltar ao evento</a></p>
 <h1>Visibilidade do cliente — <?= View::e($event['name']) ?></h1>
 <p class="text-muted">Escolha o que cada cliente pode ver sobre este evento. Se nenhuma opção for marcada, o cliente vê apenas que o evento existe.</p>
 
@@ -14,7 +17,7 @@ use App\View;
         <?php $v = $visibility[(int) $client['id']] ?? null; ?>
         <div class="card">
             <h2><?= View::e($client['name']) ?> <span class="text-muted">(<?= View::e($client['email']) ?>)</span></h2>
-            <form method="post" action="/promoter/events/<?= (int) $event['id'] ?>/visibility">
+            <form method="post" action="<?= Url::to($eventBase . '/visibility') ?>">
                 <?= Csrf::field() ?>
                 <input type="hidden" name="client_id" value="<?= (int) $client['id'] ?>">
 

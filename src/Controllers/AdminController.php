@@ -7,6 +7,7 @@ namespace App\Controllers;
 use App\Auth;
 use App\Csrf;
 use App\Models\User;
+use App\Url;
 use App\View;
 
 final class AdminController
@@ -36,7 +37,7 @@ final class AdminController
 
         if (User::findByEmail(trim($_POST['email'] ?? ''))) {
             $_SESSION['flash_error'] = 'Já existe um usuário com este e-mail.';
-            header('Location: /admin/users');
+            header('Location: ' . Url::to('/admin/users'));
             return;
         }
 
@@ -50,7 +51,7 @@ final class AdminController
         ]);
 
         $_SESSION['flash_success'] = 'Usuário criado com sucesso.';
-        header('Location: /admin/users');
+        header('Location: ' . Url::to('/admin/users'));
     }
 
     public function updateRateLimit(string $id): void
@@ -62,7 +63,7 @@ final class AdminController
         ]);
 
         $_SESSION['flash_success'] = 'Limite de mensagens por hora atualizado.';
-        header('Location: /admin/users');
+        header('Location: ' . Url::to('/admin/users'));
     }
 
     public function updateStatus(string $id): void
@@ -73,7 +74,7 @@ final class AdminController
         User::update((int) $id, ['status' => $status]);
 
         $_SESSION['flash_success'] = 'Status do usuário atualizado.';
-        header('Location: /admin/users');
+        header('Location: ' . Url::to('/admin/users'));
     }
 
     public function delete(string $id): void
@@ -82,12 +83,12 @@ final class AdminController
 
         if ((int) $id === Auth::id()) {
             $_SESSION['flash_error'] = 'Você não pode remover o próprio usuário.';
-            header('Location: /admin/users');
+            header('Location: ' . Url::to('/admin/users'));
             return;
         }
 
         User::delete((int) $id);
         $_SESSION['flash_success'] = 'Usuário removido.';
-        header('Location: /admin/users');
+        header('Location: ' . Url::to('/admin/users'));
     }
 }

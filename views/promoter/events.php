@@ -1,6 +1,7 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
 
 $statusLabels = ['draft' => 'Rascunho', 'active' => 'Ativo', 'closed' => 'Encerrado'];
@@ -9,7 +10,7 @@ $statusLabels = ['draft' => 'Rascunho', 'active' => 'Ativo', 'closed' => 'Encerr
 
 <div class="card">
     <h2>Novo evento</h2>
-    <form method="post" action="/promoter/events">
+    <form method="post" action="<?= Url::to('/promoter/events') ?>">
         <?= Csrf::field() ?>
         <label for="name">Nome do evento</label>
         <input type="text" id="name" name="name" required>
@@ -37,10 +38,10 @@ $statusLabels = ['draft' => 'Rascunho', 'active' => 'Ativo', 'closed' => 'Encerr
             <tbody>
             <?php foreach ($events as $e): ?>
                 <tr>
-                    <td><a href="/promoter/events/<?= (int) $e['id'] ?>"><?= View::e($e['name']) ?></a></td>
+                    <td><a href="<?= Url::to('/promoter/events/' . (int) $e['id']) ?>"><?= View::e($e['name']) ?></a></td>
                     <td><?= $e['event_date'] ? View::e(date('d/m/Y H:i', strtotime($e['event_date']))) : '—' ?></td>
                     <td><?= $statusLabels[$e['status']] ?? $e['status'] ?></td>
-                    <td><a href="/promoter/events/<?= (int) $e['id'] ?>">gerenciar</a></td>
+                    <td><a href="<?= Url::to('/promoter/events/' . (int) $e['id']) ?>">gerenciar</a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

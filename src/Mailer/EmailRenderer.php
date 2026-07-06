@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Mailer;
 
+use App\Url;
+
 final class EmailRenderer
 {
     /**
@@ -16,10 +18,9 @@ final class EmailRenderer
         array $template,
         array $event,
         array $contact,
-        string $trackingToken,
-        string $appUrl
+        string $trackingToken
     ): array {
-        $confirmationLink = $appUrl . '/rsvp/' . $event['slug'] . '?t=' . $trackingToken;
+        $confirmationLink = Url::full('/confirmar/' . $event['slug']) . '?t=' . $trackingToken;
 
         $replacements = [
             '{{nome}}' => $contact['name'],
@@ -30,26 +31,26 @@ final class EmailRenderer
         $subject = strtr($template['subject'], $replacements);
         $body = strtr($template['body_html'], $replacements);
 
-        $body = self::rewriteLinksForClickTracking($body, $trackingToken, $appUrl);
-        $body .= self::openPixelTag($trackingToken, $appUrl);
+        $body = self::rewriteLinksForClickTracking($body, $trackingToken);
+        $body .= self::openPixelTag($trackingToken);
 
         return ['subject' => $subject, 'body' => $body];
     }
 
-    private static function rewriteLinksForClickTracking(string $html, string $token, string $appUrl): string
+    private static function rewriteLinksForClickTracking(string $html, string $token): string
     {
         return preg_replace_callback(
             '/href="(https?:\/\/[^"]+)"/i',
-            function (array $matches) use ($token, $appUrl): string {
-                $redirect = $appUrl . '/track/click/' . $token . '?url=' . urlencode($matches[1]);
+            function (array $matches) use ($token): string {
+                $redirect = Url::full('/track/click/' . $token) . '?url=' . urlencode($matches[1]);
                 return 'href="' . $redirect . '"';
             },
             $html
         );
     }
 
-    private static function openPixelTag(string $token, string $appUrl): string
+    private static function openPixelTag(string $token): string
     {
-        return '<img src="' . $appUrl . '/track/open/' . $token . '.gif" width="1" height="1" alt="" style="display:none">';
+        return '<img src="' . Url::full('/track/open/' . $token . '.gif') . '" width="1" height="1" alt="" style="display:none">';
     }
 }

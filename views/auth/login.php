@@ -1,6 +1,7 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
 ?>
 <!doctype html>
@@ -9,7 +10,7 @@ use App\View;
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Entrar — RSVP Manager</title>
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="<?= Url::to('/assets/style.css') ?>">
 </head>
 <body>
 <main class="container login-box">
@@ -19,7 +20,7 @@ use App\View;
             <div class="alert alert-error"><?= View::e($_SESSION['flash_error']) ?></div>
             <?php unset($_SESSION['flash_error']); ?>
         <?php endif; ?>
-        <form method="post" action="/login">
+        <form method="post" action="<?= Url::to('/login') ?>">
             <?= Csrf::field() ?>
             <label for="email">E-mail</label>
             <input type="email" id="email" name="email" required autofocus>

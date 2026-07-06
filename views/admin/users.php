@@ -1,6 +1,7 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
 
 $roleLabels = ['admin' => 'Admin', 'promoter' => 'Promotor', 'client' => 'Cliente'];
@@ -9,7 +10,7 @@ $roleLabels = ['admin' => 'Admin', 'promoter' => 'Promotor', 'client' => 'Client
 
 <div class="card">
     <h2>Novo usuário</h2>
-    <form method="post" action="/admin/users">
+    <form method="post" action="<?= Url::to('/admin/users') ?>">
         <?= Csrf::field() ?>
         <label for="name">Nome</label>
         <input type="text" id="name" name="name" required>
@@ -73,7 +74,7 @@ $roleLabels = ['admin' => 'Admin', 'promoter' => 'Promotor', 'client' => 'Client
                 </td>
                 <td>
                     <?php if ($u['role'] === 'promoter'): ?>
-                        <form method="post" action="/admin/users/<?= (int) $u['id'] ?>/rate-limit" class="inline">
+                        <form method="post" action="<?= Url::to('/admin/users/' . (int) $u['id'] . '/rate-limit') ?>" class="inline">
                             <?= Csrf::field() ?>
                             <input type="number" name="messages_per_hour" value="<?= (int) $u['messages_per_hour'] ?>" min="1" style="width:80px;display:inline-block;margin:0">
                             <button type="submit" class="link-button">salvar</button>
@@ -83,14 +84,14 @@ $roleLabels = ['admin' => 'Admin', 'promoter' => 'Promotor', 'client' => 'Client
                     <?php endif; ?>
                 </td>
                 <td>
-                    <form method="post" action="/admin/users/<?= (int) $u['id'] ?>/status" class="inline">
+                    <form method="post" action="<?= Url::to('/admin/users/' . (int) $u['id'] . '/status') ?>" class="inline">
                         <?= Csrf::field() ?>
                         <input type="hidden" name="status" value="<?= $u['status'] === 'active' ? 'inactive' : 'active' ?>">
                         <button type="submit" class="link-button"><?= $u['status'] === 'active' ? 'Ativo' : 'Inativo' ?></button>
                     </form>
                 </td>
                 <td>
-                    <form method="post" action="/admin/users/<?= (int) $u['id'] ?>/delete" class="inline" onsubmit="return confirm('Remover este usuário?');">
+                    <form method="post" action="<?= Url::to('/admin/users/' . (int) $u['id'] . '/delete') ?>" class="inline" onsubmit="return confirm('Remover este usuário?');">
                         <?= Csrf::field() ?>
                         <button type="submit" class="link-button">remover</button>
                     </form>

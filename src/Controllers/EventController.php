@@ -11,6 +11,7 @@ use App\Models\Campaign;
 use App\Models\Contact;
 use App\Models\Event;
 use App\Models\Visibility;
+use App\Url;
 use App\View;
 
 final class EventController
@@ -45,7 +46,7 @@ final class EventController
         ]);
 
         $_SESSION['flash_success'] = 'Evento criado com sucesso.';
-        header('Location: /promoter/events/' . $id);
+        header('Location: ' . Url::to('/promoter/events/' . $id));
     }
 
     public function show(string $id): void
@@ -85,7 +86,7 @@ final class EventController
         ]);
 
         $_SESSION['flash_success'] = 'Evento atualizado.';
-        header('Location: /promoter/events/' . $id);
+        header('Location: ' . Url::to('/promoter/events/' . $id));
     }
 
     public function delete(string $id): void
@@ -94,7 +95,7 @@ final class EventController
         Csrf::requireValid();
         Event::delete((int) $id);
         $_SESSION['flash_success'] = 'Evento removido.';
-        header('Location: /promoter/events');
+        header('Location: ' . Url::to('/promoter/events'));
     }
 
     private function uniqueSlug(string $name): string

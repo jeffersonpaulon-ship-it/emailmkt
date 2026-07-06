@@ -1,6 +1,7 @@
 <?php
 
 use App\Auth;
+use App\Url;
 
 $user = Auth::user();
 ?>
@@ -10,7 +11,7 @@ $user = Auth::user();
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= isset($pageTitle) ? \App\View::e($pageTitle) . ' — ' : '' ?>RSVP Manager</title>
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="<?= Url::to('/assets/style.css') ?>">
 </head>
 <body>
 <?php if ($user): ?>
@@ -18,16 +19,16 @@ $user = Auth::user();
     <div class="brand">RSVP Manager</div>
     <nav>
         <?php if ($user['role'] === 'admin'): ?>
-            <a href="/admin/users">Usuários</a>
+            <a href="<?= Url::to('/admin/users') ?>">Usuários</a>
         <?php elseif ($user['role'] === 'promoter'): ?>
-            <a href="/promoter/events">Eventos</a>
+            <a href="<?= Url::to('/promoter/events') ?>">Eventos</a>
         <?php elseif ($user['role'] === 'client'): ?>
-            <a href="/client/events">Meus Eventos</a>
+            <a href="<?= Url::to('/client/events') ?>">Meus Eventos</a>
         <?php endif; ?>
     </nav>
     <div class="user-box">
         <span><?= \App\View::e($user['name']) ?> (<?= \App\View::e($user['role']) ?>)</span>
-        <form method="post" action="/logout" style="display:inline">
+        <form method="post" action="<?= Url::to('/logout') ?>" style="display:inline">
             <?= \App\Csrf::field() ?>
             <button type="submit" class="link-button">Sair</button>
         </form>

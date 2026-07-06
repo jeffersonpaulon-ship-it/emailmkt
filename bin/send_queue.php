@@ -23,7 +23,6 @@ use App\Models\EmailTemplate;
 use App\Models\User;
 
 $smtpConfig = Config::get('smtp');
-$appUrl = Config::get('app.url');
 
 $batch = CampaignRecipient::nextPendingBatch(500);
 
@@ -76,8 +75,7 @@ foreach ($batch as $recipient) {
             $template,
             $event,
             ['name' => $recipient['contact_name'], 'email' => $recipient['contact_email']],
-            $recipient['tracking_token'],
-            $appUrl
+            $recipient['tracking_token']
         );
 
         $mailer->send($recipient['contact_email'], $recipient['contact_name'], $rendered['subject'], $rendered['body']);

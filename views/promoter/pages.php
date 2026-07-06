@@ -1,6 +1,7 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
 
 /** @var array|null $confirmation */
@@ -11,19 +12,19 @@ function page_field(?array $page, string $field, string $default = ''): string
     return $page[$field] ?? $default;
 }
 ?>
-<p><a href="/promoter/events/<?= (int) $event['id'] ?>">&larr; Voltar ao evento</a></p>
+<p><a href="<?= Url::to('/promoter/events/' . $event['id']) ?>">&larr; Voltar ao evento</a></p>
 <h1>Páginas públicas — <?= View::e($event['name']) ?></h1>
 
 <div class="card">
     <h2>Página de confirmação (RSVP)</h2>
     <p class="text-muted">Usada para os convidados já cadastrados confirmarem presença.</p>
-    <?php if ($confirmation): ?>
-        <p>URL: <a href="<?= View::e($appUrl) ?>/rsvp/<?= View::e($confirmation['slug']) ?>" target="_blank"><?= View::e($appUrl) ?>/rsvp/<?= View::e($confirmation['slug']) ?></a></p>
+    <?php if ($confirmation): $confirmationUrl = Url::full('/confirmar/' . $confirmation['slug']); ?>
+        <p>URL: <a href="<?= View::e($confirmationUrl) ?>" target="_blank"><?= View::e($confirmationUrl) ?></a></p>
     <?php endif; ?>
-    <form method="post" action="/promoter/events/<?= (int) $event['id'] ?>/pages/confirmation">
+    <form method="post" action="<?= Url::to('/promoter/events/' . $event['id'] . '/pages/confirmation') ?>">
         <?= Csrf::field() ?>
         <label for="c_slug">Slug</label>
-        <input type="text" id="c_slug" name="slug" value="<?= View::e(page_field($confirmation, 'slug', 'rsvp-' . $event['slug'])) ?>">
+        <input type="text" id="c_slug" name="slug" value="<?= View::e(page_field($confirmation, 'slug', 'confirmar-' . $event['slug'])) ?>">
 
         <label for="c_title">Título</label>
         <input type="text" id="c_title" name="title" value="<?= View::e(page_field($confirmation, 'title', 'Confirme sua presença')) ?>" required>
@@ -46,10 +47,10 @@ function page_field(?array $page, string $field, string $default = ''): string
 <div class="card">
     <h2>Página de captura (leads)</h2>
     <p class="text-muted">Usada para capturar novos contatos que ainda não estão na sua lista.</p>
-    <?php if ($capture): ?>
-        <p>URL: <a href="<?= View::e($appUrl) ?>/captura/<?= View::e($capture['slug']) ?>" target="_blank"><?= View::e($appUrl) ?>/captura/<?= View::e($capture['slug']) ?></a></p>
+    <?php if ($capture): $captureUrl = Url::full('/captura/' . $capture['slug']); ?>
+        <p>URL: <a href="<?= View::e($captureUrl) ?>" target="_blank"><?= View::e($captureUrl) ?></a></p>
     <?php endif; ?>
-    <form method="post" action="/promoter/events/<?= (int) $event['id'] ?>/pages/capture">
+    <form method="post" action="<?= Url::to('/promoter/events/' . $event['id'] . '/pages/capture') ?>">
         <?= Csrf::field() ?>
         <label for="p_slug">Slug</label>
         <input type="text" id="p_slug" name="slug" value="<?= View::e(page_field($capture, 'slug', 'captura-' . $event['slug'])) ?>">

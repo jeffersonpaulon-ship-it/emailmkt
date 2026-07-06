@@ -1,5 +1,6 @@
 <?php
 
+use App\Url;
 use App\View;
 ?>
 <h1>Meus eventos</h1>
@@ -16,7 +17,7 @@ use App\View;
                     <td><?= View::e($e['name']) ?></td>
                     <td><?= $e['event_date'] ? View::e(date('d/m/Y H:i', strtotime($e['event_date']))) : '—' ?></td>
                     <td><?= View::e($e['location'] ?? '—') ?></td>
-                    <td><a href="/client/events/<?= (int) $e['id'] ?>">ver detalhes</a></td>
+                    <td><a href="<?= Url::to('/client/events/' . (int) $e['id']) ?>">ver detalhes</a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

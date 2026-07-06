@@ -1,5 +1,6 @@
 <?php
 
+use App\Url;
 use App\View;
 ?>
 <!doctype html>
@@ -8,7 +9,7 @@ use App\View;
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= View::e($pageTitle) ?></title>
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="<?= Url::to('/assets/style.css') ?>">
 </head>
 <body>
 <main class="public-page">

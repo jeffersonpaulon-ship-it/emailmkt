@@ -1,5 +1,9 @@
 RewriteEngine On
 
-# Encaminha tudo para o document root real (public/), caso o vhost aponte para a raiz do repositório.
-RewriteCond %{REQUEST_URI} !^/public/
-RewriteRule ^(.*)$ /public/$1 [L]
+# Encaminha tudo para o document root real (public/), caso o vhost (ou subpasta) aponte
+# para a raiz do repositório em vez de public/ diretamente. A substituição é relativa
+# (sem "/" no início) para funcionar tanto na raiz do domínio quanto numa subpasta
+# (ex: seusite.com/rsvp/). A condição usa busca por substring (sem "^") para evitar loop
+# de reescrita infinito independente da profundidade da subpasta.
+RewriteCond %{REQUEST_URI} !/public/
+RewriteRule ^(.*)$ public/$1 [L]

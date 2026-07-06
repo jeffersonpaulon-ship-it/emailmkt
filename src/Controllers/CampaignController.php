@@ -11,6 +11,7 @@ use App\Models\Campaign;
 use App\Models\CampaignRecipient;
 use App\Models\Contact;
 use App\Models\EmailTemplate;
+use App\Url;
 use App\View;
 
 final class CampaignController
@@ -46,7 +47,7 @@ final class CampaignController
 
         if (!$template || (int) $template['event_id'] !== (int) $eventId) {
             $_SESSION['flash_error'] = 'Selecione um template válido.';
-            header('Location: /promoter/events/' . $eventId . '/campaigns');
+            header('Location: ' . Url::to('/promoter/events/' . $eventId . '/campaigns'));
             return;
         }
 
@@ -66,7 +67,7 @@ final class CampaignController
         }
 
         $_SESSION['flash_success'] = 'Campanha criada com os destinatários enfileirados.';
-        header('Location: /promoter/campaigns/' . $campaignId);
+        header('Location: ' . Url::to('/promoter/campaigns/' . $campaignId));
     }
 
     public function show(string $campaignId): void
@@ -104,7 +105,7 @@ final class CampaignController
 
         Campaign::updateStatus((int) $campaignId, 'queued');
         $_SESSION['flash_success'] = 'Campanha enfileirada para envio. O disparo respeita o limite de mensagens/hora do seu perfil.';
-        header('Location: /promoter/campaigns/' . $campaignId);
+        header('Location: ' . Url::to('/promoter/campaigns/' . $campaignId));
     }
 
     public function pause(string $campaignId): void
@@ -120,6 +121,6 @@ final class CampaignController
 
         Campaign::updateStatus((int) $campaignId, 'paused');
         $_SESSION['flash_success'] = 'Campanha pausada.';
-        header('Location: /promoter/campaigns/' . $campaignId);
+        header('Location: ' . Url::to('/promoter/campaigns/' . $campaignId));
     }
 }

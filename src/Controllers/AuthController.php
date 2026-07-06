@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Auth;
 use App\Csrf;
+use App\Url;
 use App\View;
 
 final class AuthController
@@ -33,14 +34,14 @@ final class AuthController
         }
 
         $_SESSION['flash_error'] = 'E-mail ou senha inválidos.';
-        header('Location: /login');
+        header('Location: ' . Url::to('/login'));
     }
 
     public function logout(): void
     {
         Csrf::requireValid();
         Auth::logout();
-        header('Location: /login');
+        header('Location: ' . Url::to('/login'));
     }
 
     private function redirectToDashboard(): void
@@ -52,6 +53,6 @@ final class AuthController
             'client' => '/client/events',
             default => '/login',
         };
-        header('Location: ' . $target);
+        header('Location: ' . Url::to($target));
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
 
 $statusLabels = [
@@ -8,7 +9,7 @@ $statusLabels = [
     'opened' => 'Aberto', 'clicked' => 'Clicou',
 ];
 ?>
-<p><a href="/promoter/events/<?= (int) $event['id'] ?>/campaigns">&larr; Voltar às campanhas</a></p>
+<p><a href="<?= Url::to('/promoter/events/' . (int) $event['id'] . '/campaigns') ?>">&larr; Voltar às campanhas</a></p>
 <h1><?= View::e($campaign['name']) ?></h1>
 
 <div class="stats-grid">
@@ -24,12 +25,12 @@ $statusLabels = [
     <p>Status atual: <strong><?= View::e($campaign['status']) ?></strong></p>
     <div class="actions">
         <?php if (in_array($campaign['status'], ['draft', 'paused'], true)): ?>
-            <form method="post" action="/promoter/campaigns/<?= (int) $campaign['id'] ?>/send">
+            <form method="post" action="<?= Url::to('/promoter/campaigns/' . (int) $campaign['id'] . '/send') ?>">
                 <?= Csrf::field() ?>
                 <button type="submit" class="btn">Enviar agora (respeitando limite/hora)</button>
             </form>
         <?php elseif (in_array($campaign['status'], ['queued', 'sending'], true)): ?>
-            <form method="post" action="/promoter/campaigns/<?= (int) $campaign['id'] ?>/pause">
+            <form method="post" action="<?= Url::to('/promoter/campaigns/' . (int) $campaign['id'] . '/pause') ?>">
                 <?= Csrf::field() ?>
                 <button type="submit" class="btn btn-secondary">Pausar envio</button>
             </form>

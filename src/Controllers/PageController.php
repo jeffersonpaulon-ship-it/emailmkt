@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Auth;
-use App\Config;
 use App\Controllers\Concerns\EventOwnership;
 use App\Csrf;
 use App\Models\Page;
+use App\Url;
 use App\View;
 
 final class PageController
@@ -25,14 +25,12 @@ final class PageController
         $event = $this->ownedEventOrFail($eventId);
         $confirmation = Page::findByEventAndType((int) $eventId, 'confirmation');
         $capture = Page::findByEventAndType((int) $eventId, 'capture');
-        $appUrl = Config::get('app.url');
 
         View::render('promoter/pages', [
             'pageTitle' => 'Páginas públicas — ' . $event['name'],
             'event' => $event,
             'confirmation' => $confirmation,
             'capture' => $capture,
-            'appUrl' => $appUrl,
         ]);
     }
 
@@ -65,6 +63,6 @@ final class PageController
         ]);
 
         $_SESSION['flash_success'] = 'Página atualizada.';
-        header('Location: /promoter/events/' . $eventId . '/pages');
+        header('Location: ' . Url::to('/promoter/events/' . $eventId . '/pages'));
     }
 }

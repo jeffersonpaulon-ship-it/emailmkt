@@ -41,6 +41,30 @@ Para desenvolvimento local, o servidor embutido do PHP funciona:
 php -S 127.0.0.1:8000 -t public
 ```
 
+### Rodando numa subpasta (ex: seusite.com/rsvp/)
+
+Se o domínio já tem outro site na raiz e este projeto precisa conviver numa
+subpasta (upload de todo o repositório em `public_html/rsvp/`, por exemplo),
+basta definir `APP_URL` no `.env` **incluindo o caminho da subpasta**:
+
+```
+APP_URL=https://seusite.com/rsvp
+```
+
+Todos os links internos, redirecionamentos e URLs geradas em e-mails passam a
+usar esse prefixo automaticamente (veja `src/Url.php`) — não é necessário
+nenhum outro ajuste de código. Só confirme que:
+
+- `mod_rewrite` está habilitado e `AllowOverride All` está ativo para essa
+  pasta (para o `.htaccess` da raiz do projeto conseguir encaminhar as
+  requisições para `public/`);
+- o PHP está configurado para rodar nessa pasta (via `mod_php`, `php-fpm` +
+  `proxy_fcgi`, ou CGI, dependendo do seu provedor de hospedagem).
+
+Se preferir evitar qualquer truque de reescrita, a alternativa mais robusta é
+apontar o document root de um subdomínio/domínio adicional diretamente para a
+pasta `public/` do projeto (nesse caso, `APP_URL` não precisa de caminho).
+
 ## Envio de e-mails (fila com limite por hora)
 
 Os e-mails de campanha não são enviados na hora — ficam na fila

@@ -8,6 +8,7 @@ use App\Auth;
 use App\Controllers\Concerns\EventOwnership;
 use App\Csrf;
 use App\Models\EmailTemplate;
+use App\Url;
 use App\View;
 
 final class TemplateController
@@ -45,7 +46,7 @@ final class TemplateController
         ]);
 
         $_SESSION['flash_success'] = 'Template criado. Use {{nome}}, {{evento}} e {{link_confirmacao}} no corpo para personalizar.';
-        header('Location: /promoter/events/' . $eventId . '/templates');
+        header('Location: ' . Url::to('/promoter/events/' . $eventId . '/templates'));
     }
 
     public function delete(string $eventId, string $templateId): void
@@ -59,6 +60,6 @@ final class TemplateController
             $_SESSION['flash_success'] = 'Template removido.';
         }
 
-        header('Location: /promoter/events/' . $eventId . '/templates');
+        header('Location: ' . Url::to('/promoter/events/' . $eventId . '/templates'));
     }
 }

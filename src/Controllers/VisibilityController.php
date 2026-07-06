@@ -9,6 +9,7 @@ use App\Controllers\Concerns\EventOwnership;
 use App\Csrf;
 use App\Models\User;
 use App\Models\Visibility;
+use App\Url;
 use App\View;
 
 final class VisibilityController
@@ -47,7 +48,7 @@ final class VisibilityController
 
         if (!$client || $client['role'] !== 'client' || (int) $client['promoter_id'] !== Auth::id()) {
             $_SESSION['flash_error'] = 'Cliente inválido.';
-            header('Location: /promoter/events/' . $eventId . '/visibility');
+            header('Location: ' . Url::to('/promoter/events/' . $eventId . '/visibility'));
             return;
         }
 
@@ -64,6 +65,6 @@ final class VisibilityController
             $_SESSION['flash_success'] = 'Visibilidade do cliente atualizada.';
         }
 
-        header('Location: /promoter/events/' . $eventId . '/visibility');
+        header('Location: ' . Url::to('/promoter/events/' . $eventId . '/visibility'));
     }
 }

@@ -39,6 +39,12 @@ final class Router
     public function dispatch(string $method, string $uri): void
     {
         $path = parse_url($uri, PHP_URL_PATH) ?: '/';
+
+        $basePath = Url::basePath();
+        if ($basePath !== '' && str_starts_with($path, $basePath)) {
+            $path = substr($path, strlen($basePath));
+        }
+
         $path = $path === '' ? '/' : rtrim($path, '/');
         if ($path === '') {
             $path = '/';

@@ -1,11 +1,13 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
 
 $outcomeLabels = ['scheduled' => 'Agendada', 'completed' => 'Concluída', 'no_answer' => 'Não atendeu', 'declined' => 'Recusou'];
+$eventBase = '/promoter/events/' . (int) $event['id'];
 ?>
-<p><a href="/promoter/events/<?= (int) $event['id'] ?>">&larr; Voltar ao evento</a></p>
+<p><a href="<?= Url::to($eventBase) ?>">&larr; Voltar ao evento</a></p>
 <h1>Ligações — <?= View::e($event['name']) ?></h1>
 <p class="text-muted">Discagem automática ainda não conectada — use esta tela para registrar manualmente o resultado das ligações feitas.</p>
 
@@ -14,7 +16,7 @@ $outcomeLabels = ['scheduled' => 'Agendada', 'completed' => 'Concluída', 'no_an
     <?php if (empty($contacts)): ?>
         <p class="text-muted">Cadastre contatos neste evento antes de registrar ligações.</p>
     <?php else: ?>
-        <form method="post" action="/promoter/events/<?= (int) $event['id'] ?>/calls">
+        <form method="post" action="<?= Url::to($eventBase . '/calls') ?>">
             <?= Csrf::field() ?>
             <label for="contact_id">Contato</label>
             <select id="contact_id" name="contact_id" required>

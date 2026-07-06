@@ -20,6 +20,7 @@ use App\Controllers\TrackingController;
 use App\Controllers\VisibilityController;
 use App\Auth;
 use App\Router;
+use App\Url;
 
 $router = new Router();
 
@@ -30,7 +31,7 @@ $router->post('/logout', [AuthController::class, 'logout']);
 
 $router->get('/', function () {
     if (!Auth::check()) {
-        header('Location: /login');
+        header('Location: ' . Url::to('/login'));
         return;
     }
 
@@ -40,7 +41,7 @@ $router->get('/', function () {
         'client' => '/client/events',
         default => '/login',
     };
-    header('Location: ' . $target);
+    header('Location: ' . Url::to($target));
 });
 
 // Admin
@@ -92,9 +93,11 @@ $router->post('/promoter/events/{eventId}/visibility', [VisibilityController::cl
 $router->get('/client/events', [ClientController::class, 'index']);
 $router->get('/client/events/{eventId}', [ClientController::class, 'show']);
 
-// Páginas públicas (RSVP / captura de leads)
-$router->get('/rsvp/{slug}', [PublicController::class, 'confirmation']);
-$router->post('/rsvp/{slug}', [PublicController::class, 'confirmationSubmit']);
+// Páginas públicas (confirmação de presença / captura de leads)
+// Nota: usa "/confirmar/" (não "/rsvp/") para não colidir com o nome do produto
+// quando o app é hospedado numa subpasta chamada "rsvp" (ex: seusite.com/rsvp/).
+$router->get('/confirmar/{slug}', [PublicController::class, 'confirmation']);
+$router->post('/confirmar/{slug}', [PublicController::class, 'confirmationSubmit']);
 $router->get('/captura/{slug}', [PublicController::class, 'capture']);
 $router->post('/captura/{slug}', [PublicController::class, 'captureSubmit']);
 

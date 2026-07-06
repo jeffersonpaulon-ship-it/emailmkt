@@ -1,11 +1,13 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
 
 $statusLabels = ['draft' => 'Rascunho', 'active' => 'Ativo', 'closed' => 'Encerrado'];
+$eventBase = '/promoter/events/' . (int) $event['id'];
 ?>
-<p><a href="/promoter/events">&larr; Voltar aos eventos</a></p>
+<p><a href="<?= Url::to('/promoter/events') ?>">&larr; Voltar aos eventos</a></p>
 <h1><?= View::e($event['name']) ?></h1>
 
 <div class="stats-grid">
@@ -17,7 +19,7 @@ $statusLabels = ['draft' => 'Rascunho', 'active' => 'Ativo', 'closed' => 'Encerr
 
 <div class="card">
     <h2>Editar evento</h2>
-    <form method="post" action="/promoter/events/<?= (int) $event['id'] ?>">
+    <form method="post" action="<?= Url::to($eventBase) ?>">
         <?= Csrf::field() ?>
         <label for="name">Nome</label>
         <input type="text" id="name" name="name" value="<?= View::e($event['name']) ?>" required>
@@ -48,13 +50,13 @@ $statusLabels = ['draft' => 'Rascunho', 'active' => 'Ativo', 'closed' => 'Encerr
 <div class="card">
     <h2>Gerenciar</h2>
     <p>
-        <a class="btn" href="/promoter/events/<?= (int) $event['id'] ?>/contacts">Contatos</a>
-        <a class="btn" href="/promoter/events/<?= (int) $event['id'] ?>/pages">Páginas públicas</a>
-        <a class="btn" href="/promoter/events/<?= (int) $event['id'] ?>/templates">Templates de e-mail</a>
-        <a class="btn" href="/promoter/events/<?= (int) $event['id'] ?>/campaigns">Campanhas de e-mail</a>
-        <a class="btn" href="/promoter/events/<?= (int) $event['id'] ?>/whatsapp">WhatsApp</a>
-        <a class="btn" href="/promoter/events/<?= (int) $event['id'] ?>/calls">Ligações</a>
-        <a class="btn" href="/promoter/events/<?= (int) $event['id'] ?>/visibility">Visibilidade do cliente</a>
+        <a class="btn" href="<?= Url::to($eventBase . '/contacts') ?>">Contatos</a>
+        <a class="btn" href="<?= Url::to($eventBase . '/pages') ?>">Páginas públicas</a>
+        <a class="btn" href="<?= Url::to($eventBase . '/templates') ?>">Templates de e-mail</a>
+        <a class="btn" href="<?= Url::to($eventBase . '/campaigns') ?>">Campanhas de e-mail</a>
+        <a class="btn" href="<?= Url::to($eventBase . '/whatsapp') ?>">WhatsApp</a>
+        <a class="btn" href="<?= Url::to($eventBase . '/calls') ?>">Ligações</a>
+        <a class="btn" href="<?= Url::to($eventBase . '/visibility') ?>">Visibilidade do cliente</a>
     </p>
 </div>
 
@@ -70,7 +72,7 @@ $statusLabels = ['draft' => 'Rascunho', 'active' => 'Ativo', 'closed' => 'Encerr
                 <tr>
                     <td><?= View::e($c['name']) ?></td>
                     <td><?= View::e($c['status']) ?></td>
-                    <td><a href="/promoter/campaigns/<?= (int) $c['id'] ?>">ver estatísticas</a></td>
+                    <td><a href="<?= Url::to('/promoter/campaigns/' . (int) $c['id']) ?>">ver estatísticas</a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -81,7 +83,7 @@ $statusLabels = ['draft' => 'Rascunho', 'active' => 'Ativo', 'closed' => 'Encerr
 <div class="card">
     <h2>Clientes com acesso a este evento</h2>
     <?php if (empty($clients)): ?>
-        <p class="text-muted">Nenhum cliente com acesso configurado. <a href="/promoter/events/<?= (int) $event['id'] ?>/visibility">Configurar visibilidade</a>.</p>
+        <p class="text-muted">Nenhum cliente com acesso configurado. <a href="<?= Url::to($eventBase . '/visibility') ?>">Configurar visibilidade</a>.</p>
     <?php else: ?>
         <ul>
             <?php foreach ($clients as $c): ?>

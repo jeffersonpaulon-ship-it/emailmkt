@@ -1,9 +1,12 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
+
+$eventBase = '/promoter/events/' . (int) $event['id'];
 ?>
-<p><a href="/promoter/events/<?= (int) $event['id'] ?>">&larr; Voltar ao evento</a></p>
+<p><a href="<?= Url::to($eventBase) ?>">&larr; Voltar ao evento</a></p>
 <h1>WhatsApp — <?= View::e($event['name']) ?></h1>
 <p class="text-muted">Integração com provedor de WhatsApp ainda não conectada nesta etapa — a estrutura de fila e histórico já está pronta para quando a integração for ativada.</p>
 
@@ -12,7 +15,7 @@ use App\View;
     <?php if (empty($contacts)): ?>
         <p class="text-muted">Cadastre contatos neste evento antes de enviar mensagens.</p>
     <?php else: ?>
-        <form method="post" action="/promoter/events/<?= (int) $event['id'] ?>/whatsapp/send">
+        <form method="post" action="<?= Url::to($eventBase . '/whatsapp/send') ?>">
             <?= Csrf::field() ?>
             <label>Contatos</label>
             <div class="card" style="max-height:220px; overflow-y:auto;">

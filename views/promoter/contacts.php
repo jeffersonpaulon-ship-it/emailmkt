@@ -1,17 +1,19 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
 
 $statusLabels = ['pending' => 'Pendente', 'confirmed' => 'Confirmado', 'declined' => 'Recusado'];
 $sourceLabels = ['manual' => 'Manual', 'import' => 'Importado', 'capture_page' => 'Pág. de captura', 'confirmation_page' => 'Pág. de confirmação'];
+$eventBase = '/promoter/events/' . (int) $event['id'];
 ?>
-<p><a href="/promoter/events/<?= (int) $event['id'] ?>">&larr; Voltar ao evento</a></p>
+<p><a href="<?= Url::to($eventBase) ?>">&larr; Voltar ao evento</a></p>
 <h1>Contatos — <?= View::e($event['name']) ?></h1>
 
 <div class="card">
     <h2>Adicionar contato</h2>
-    <form method="post" action="/promoter/events/<?= (int) $event['id'] ?>/contacts">
+    <form method="post" action="<?= Url::to($eventBase . '/contacts') ?>">
         <?= Csrf::field() ?>
         <label for="name">Nome</label>
         <input type="text" id="name" name="name" required>
@@ -42,7 +44,7 @@ $sourceLabels = ['manual' => 'Manual', 'import' => 'Importado', 'capture_page' =
                     <td><span class="badge badge-<?= $c['rsvp_status'] ?>"><?= $statusLabels[$c['rsvp_status']] ?? $c['rsvp_status'] ?></span></td>
                     <td><?= $sourceLabels[$c['source']] ?? $c['source'] ?></td>
                     <td>
-                        <form method="post" action="/promoter/events/<?= (int) $event['id'] ?>/contacts/<?= (int) $c['id'] ?>/delete" class="inline" onsubmit="return confirm('Remover este contato?');">
+                        <form method="post" action="<?= Url::to($eventBase . '/contacts/' . (int) $c['id'] . '/delete') ?>" class="inline" onsubmit="return confirm('Remover este contato?');">
                             <?= Csrf::field() ?>
                             <button type="submit" class="link-button">remover</button>
                         </form>

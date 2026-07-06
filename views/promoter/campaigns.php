@@ -1,22 +1,24 @@
 <?php
 
 use App\Csrf;
+use App\Url;
 use App\View;
 
 $statusLabels = [
     'draft' => 'Rascunho', 'queued' => 'Na fila', 'sending' => 'Enviando',
     'completed' => 'Concluída', 'paused' => 'Pausada',
 ];
+$eventBase = '/promoter/events/' . (int) $event['id'];
 ?>
-<p><a href="/promoter/events/<?= (int) $event['id'] ?>">&larr; Voltar ao evento</a></p>
+<p><a href="<?= Url::to($eventBase) ?>">&larr; Voltar ao evento</a></p>
 <h1>Campanhas de e-mail — <?= View::e($event['name']) ?></h1>
 
 <div class="card">
     <h2>Nova campanha</h2>
     <?php if (empty($templates)): ?>
-        <p class="text-muted">Você precisa <a href="/promoter/events/<?= (int) $event['id'] ?>/templates">criar um template</a> antes de disparar uma campanha.</p>
+        <p class="text-muted">Você precisa <a href="<?= Url::to($eventBase . '/templates') ?>">criar um template</a> antes de disparar uma campanha.</p>
     <?php else: ?>
-        <form method="post" action="/promoter/events/<?= (int) $event['id'] ?>/campaigns">
+        <form method="post" action="<?= Url::to($eventBase . '/campaigns') ?>">
             <?= Csrf::field() ?>
             <label for="name">Nome da campanha</label>
             <input type="text" id="name" name="name" required>
@@ -51,7 +53,7 @@ $statusLabels = [
                 <tr>
                     <td><?= View::e($c['name']) ?></td>
                     <td><?= $statusLabels[$c['status']] ?? $c['status'] ?></td>
-                    <td><a href="/promoter/campaigns/<?= (int) $c['id'] ?>">ver detalhes</a></td>
+                    <td><a href="<?= Url::to('/promoter/campaigns/' . (int) $c['id']) ?>">ver detalhes</a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

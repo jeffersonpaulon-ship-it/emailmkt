@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check-in Express | Worknet Eventos</title>
+<meta name="description" content="Check-in Express by Worknet Eventos — sistema completo de credenciamento e gestão de eventos em tempo real. Check-in rápido, QR Code, etiquetas, relatórios e muito mais.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%231d4ed8%22/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="34" height="34">
+          <circle cx="24" cy="24" r="22" fill="url(#g1)"/>
+          <path d="M24 4c6 6 9 12 9 20s-3 14-9 20c-6-6-9-12-9-20s3-14 9-20z" fill="none" stroke="#fff" stroke-width="1.4" opacity=".8"/>
+          <ellipse cx="24" cy="24" rx="22" ry="7" fill="none" stroke="#fff" stroke-width="1.2" opacity=".7"/>
+          <ellipse cx="24" cy="24" rx="22" ry="14" fill="none" stroke="#fff" stroke-width="1" opacity=".5"/>
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#3b82f6"/>
+              <stop offset="1" stop-color="#0f2a6b"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <span class="brand-text">Worknet<strong>eventos</strong></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#recursos">Recursos</a>
+      <a href="#planos">Planos</a>
+      <a href="#opcionais">Opcionais</a>
+      <a href="#infraestrutura">Infraestrutura</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <a href="https://wa.me/5511976792549" target="_blank" rel="noopener" class="btn btn-primary btn-sm header-cta">Falar no WhatsApp</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy" data-reveal>
+      <span class="eyebrow">Credenciamento &amp; gestão de eventos</span>
+      <h1>Check-in Express</h1>
+      <p class="hero-subtitle">by Worknet Eventos</p>
+      <p class="hero-text">Sistema completo de credenciamento e gestão de eventos em tempo real. QR Code, impressão de etiquetas, relatórios ao vivo e check-in em segundos — do cadastro à entrada do participante.</p>
+      <div class="hero-actions">
+        <a href="#planos" class="btn btn-primary">Ver planos e preços</a>
+        <a href="https://wa.me/5511976792549" target="_blank" rel="noopener" class="btn btn-ghost">Solicitar demonstração</a>
+      </div>
+      <ul class="hero-trust">
+        <li>Tecnologia avançada</li>
+        <li>Segurança de dados</li>
+        <li>Suporte especializado</li>
+        <li>Resultados comprovados</li>
+      </ul>
+    </div>
+
+    <div class="hero-visual" data-reveal>
+      <div class="mock-laptop">
+        <div class="mock-screen">
+          <div class="mock-topbar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          </div>
+          <div class="mock-body">
+            <aside class="mock-sidebar">
+              <div class="mock-logo-dot"></div>
+              <span class="mock-side-item active">Dashboard</span>
+              <span class="mock-side-item">Eventos</span>
+              <span class="mock-side-item">Participantes</span>
+              <span class="mock-side-item">Check-in</span>
+              <span class="mock-side-item">Etiquetas</span>
+              <span class="mock-side-item">Relatórios</span>
+            </aside>
+            <div class="mock-main">
+              <div class="mock-kpis">
+                <div class="mock-kpi">
+                  <span class="k-label">Participantes</span>
+                  <span class="k-value">235</span>
+                  <span class="k-delta up">+58,8%</span>
+                </div>
+                <div class="mock-kpi">
+                  <span class="k-label">Check-ins</span>
+                  <span class="k-value">186</span>
+                  <span class="k-delta up">+46,5%</span>
+                </div>
+                <div class="mock-kpi">
+                  <span class="k-label">Pendentes</span>
+                  <span class="k-value">214</span>
+                  <span class="k-delta up">+53,5%</span>
+                </div>
+                <div class="mock-kpi">
+                  <span class="k-label">Taxa de check-in</span>
+                  <span class="k-value">46,5%</span>
+                  <span class="k-delta up">+12,4%</span>
+                </div>
+              </div>
+              <div class="mock-chart" aria-hidden="true">
+                <svg viewBox="0 0 300 90" preserveAspectRatio="none">
+                  <polyline points="0,70 30,55 60,60 90,35 120,40 150,15 180,28 210,20 240,45 270,30 300,50" fill="none" stroke="#3b82f6" stroke-width="3"/>
+                  <polygon points="0,70 30,55 60,60 90,35 120,40 150,15 180,28 210,20 240,45 270,30 300,50 300,90 0,90" fill="url(#chartFill)" opacity=".25"/>
+                  <defs>
+                    <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#3b82f6"/>
+                      <stop offset="1" stop-color="#3b82f6" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-base"></div>
+      </div>
+
+      <div class="mock-phone">
+        <div class="mock-phone-screen">
+          <span class="mock-phone-status">Check-in</span>
+          <div class="mock-check-circle">
+            <svg viewBox="0 0 24 24" width="30" height="30"><path d="M20 6L9 17l-5-5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="mock-phone-title">Check-in realizado!</span>
+          <span class="mock-phone-name">João Silva</span>
+          <span class="mock-phone-doc">CPF 123.456.789-00</span>
+          <span class="mock-phone-btn">Nova busca</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ESCOPO DO SISTEMA ========== -->
+<section class="section" id="recursos">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="tag">Escopo do sistema</span>
+      <h2>Tudo que o seu evento precisa, em um único painel</h2>
+      <p>Da criação do evento à saída do participante, cada etapa do credenciamento é controlada em tempo real.</p>
+    </div>
+
+    <div class="feature-grid" data-reveal>
+      <div class="feature-item">
+        <span class="feature-icon">🖥️</span>
+        <div><strong>Criação de evento</strong><span>com Hostsite</span></div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🏷️</span>
+        <div><strong>Impressão</strong><span>de etiquetas</span></div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">👤</span>
+        <div><strong>Gestão de usuários</strong><span>Perfis e permissões</span></div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">📱</span>
+        <div><strong>Envio de QR Code</strong><span>para participantes</span></div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🔍</span>
+        <div><strong>Busca por QR Code</strong><span>CPF, Nome e Email</span></div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">📊</span>
+        <div><strong>Relatórios</strong><span>em tempo real</span></div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🔐</span>
+        <div><strong>Gestão de credenciamento</strong><span>importação/exportação de listas</span></div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">📝</span>
+        <div><strong>Cadastro local</strong><span>personalizado</span></div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">⚡</span>
+        <div><strong>Check-in rápido</strong><span>Entrada em segundos</span></div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🎨</span>
+        <div><strong>Layout de etiquetas</strong><span>configurável</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PLANOS ========== -->
+<section class="section section-alt" id="planos">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="tag">Planos e preços</span>
+      <h2>Um plano para cada tipo de evento</h2>
+      <p>Todos os pacotes suportam eventos de até <strong>400 participantes</strong> por evento.</p>
+    </div>
+
+    <div class="pricing-grid" data-reveal>
+      <div class="price-card">
+        <div class="price-icon">🚀</div>
+        <h3>Start</h3>
+        <p class="price-desc">Até 400 participantes</p>
+        <div class="price-value"><span class="currency">R$</span>2.950<span class="cents">,00</span></div>
+        <p class="price-period">por evento</p>
+        <ul class="price-features">
+          <li>Ideal para eventos pontuais e de menor duração</li>
+          <li>Todos os recursos do sistema</li>
+          <li>Suporte via WhatsApp</li>
+        </ul>
+        <a href="https://wa.me/5511976792549" target="_blank" rel="noopener" class="btn btn-outline">Contratar Start</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-icon">⭐</div>
+        <h3>Pró</h3>
+        <p class="price-desc">Até 400 participantes</p>
+        <div class="price-value"><span class="currency">R$</span>2.500<span class="cents">,00</span></div>
+        <p class="price-period">/mês</p>
+        <ul class="price-features">
+          <li>Pensado para eventos recorrentes</li>
+          <li>Melhor custo-benefício</li>
+          <li>Todos os recursos do sistema</li>
+          <li>Suporte prioritário</li>
+        </ul>
+        <a href="https://wa.me/5511976792549" target="_blank" rel="noopener" class="btn btn-outline">Contratar Pró</a>
+      </div>
+
+      <div class="price-card price-card--featured">
+        <div class="price-badge">Mais escolhido</div>
+        <div class="price-icon">👑</div>
+        <h3>Enterprise</h3>
+        <p class="price-desc">Até 400 participantes</p>
+        <div class="price-value"><span class="currency">R$</span>2.100<span class="cents">,00</span></div>
+        <p class="price-period">/mês</p>
+        <ul class="price-features">
+          <li>Solução completa para qualquer evento</li>
+          <li>Máxima economia</li>
+          <li>Todos os recursos do sistema</li>
+          <li>Suporte dedicado</li>
+        </ul>
+        <a href="https://wa.me/5511976792549" target="_blank" rel="noopener" class="btn btn-primary">Contratar Enterprise</a>
+      </div>
+    </div>
+
+    <div class="price-contact" data-reveal>
+      <a href="https://wa.me/5511976792549" target="_blank" rel="noopener">📞 (11) 97679-2549</a>
+      <a href="mailto:eventos@workneteventos.com.br">✉️ eventos@workneteventos.com.br</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== OPCIONAIS ========== -->
+<section class="section" id="opcionais">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="tag">Opcionais</span>
+      <h2>Serviços complementares</h2>
+      <p>Potencialize seu evento com recursos extras sob demanda.</p>
+    </div>
+
+    <div class="addons-grid" data-reveal>
+      <div class="matchmaking-card">
+        <span class="feature-icon">🤝</span>
+        <h3>Matchmaking</h3>
+        <p>Conexão inteligente entre participantes com interesses em comum, gerando reuniões de negócios e networking qualificado durante o evento.</p>
+      </div>
+
+      <div class="addons-list">
+        <h3>Outros opcionais</h3>
+        <ul class="check-list two-col">
+          <li>QR Code via WhatsApp</li>
+          <li>Sorteios</li>
+          <li>Certificado online</li>
+          <li>Coletor de leads integrado</li>
+          <li>Integração com plataformas de vendas</li>
+          <li>Controle de salas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== INFRAESTRUTURA ========== -->
+<section class="section section-alt" id="infraestrutura">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="tag">Infraestrutura &amp; equipe (opcional)</span>
+      <h2>Equipamentos e equipe prontos para o dia do evento</h2>
+    </div>
+
+    <div class="infra-grid" data-reveal>
+      <div class="infra-item"><span>💻</span>Notebooks</div>
+      <div class="infra-item"><span>🖨️</span>Impressoras térmicas</div>
+      <div class="infra-item"><span>📱</span>Celulares e tablets</div>
+      <div class="infra-item"><span>📶</span>Roteadores</div>
+      <div class="infra-item"><span>🎫</span>Etiquetas e ribbons</div>
+      <div class="infra-item"><span>🙋</span>Recepcionistas</div>
+      <div class="infra-item"><span>🛠️</span>Suporte técnico especializado</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA FINAL ========== -->
+<section class="cta-band" id="contato">
+  <div class="container cta-inner" data-reveal>
+    <div>
+      <h2>Pronto para agilizar o check-in do seu evento?</h2>
+      <p>Fale com a nossa equipe e monte o plano ideal para o seu próximo evento.</p>
+    </div>
+    <a href="https://wa.me/5511976792549" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Solicitar proposta</a>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="30" height="30">
+          <circle cx="24" cy="24" r="22" fill="url(#g2)"/>
+          <defs>
+            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#3b82f6"/>
+              <stop offset="1" stop-color="#0f2a6b"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <div>
+        <strong>Worknet Eventos</strong>
+        <p>Soluções completas em credenciamento, controle de acesso e tecnologia para eventos de alta performance.</p>
+      </div>
+    </div>
+
+    <ul class="footer-badges">
+      <li>Tecnologia avançada</li>
+      <li>Segurança de dados</li>
+      <li>Suporte especializado</li>
+      <li>Resultados comprovados</li>
+    </ul>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; <span id="year"></span> Worknet Eventos. Todos os direitos reservados.</span>
+    <span>(11) 97679-2549 · eventos@workneteventos.com.br</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -108,11 +108,11 @@ ul { list-style: none; }
 
 .brand { display: flex; align-items: center; }
 .brand-logo {
-  height: 32px;
+  height: 46px;
   width: auto;
   background: rgba(255, 255, 255, .92);
   border-radius: 8px;
-  padding: .3rem .55rem;
+  padding: .35rem .6rem;
 }
 
 .main-nav {
@@ -653,12 +653,12 @@ ul { list-style: none; }
 }
 .footer-brand { display: flex; flex-direction: column; gap: .8rem; max-width: 420px; }
 .footer-logo {
-  height: 34px;
+  height: 22px;
   width: auto;
   align-self: flex-start;
   background: rgba(255, 255, 255, .92);
-  border-radius: 8px;
-  padding: .35rem .6rem;
+  border-radius: 6px;
+  padding: .25rem .45rem;
 }
 .footer-brand p { font-size: .85rem; color: rgba(255, 255, 255, .6); }
 

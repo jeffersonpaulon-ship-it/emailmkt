@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Check-in Express — Worknet Eventos — Landing Page
+   Check-in Express — Landing Page
    ========================================================================== */
 :root {
   --navy-950: #060b1f;
@@ -106,9 +106,14 @@ ul { list-style: none; }
   height: 76px;
 }
 
-.brand { display: flex; align-items: center; gap: .6rem; }
-.brand-text { color: #fff; font-size: 1.05rem; letter-spacing: .2px; }
-.brand-text strong { color: var(--blue-400); font-weight: 700; }
+.brand { display: flex; align-items: center; }
+.brand-logo {
+  height: 32px;
+  width: auto;
+  background: rgba(255, 255, 255, .92);
+  border-radius: 8px;
+  padding: .3rem .55rem;
+}
 
 .main-nav {
   display: flex;
@@ -646,9 +651,16 @@ ul { list-style: none; }
   flex-wrap: wrap;
   padding-bottom: 2.2rem;
 }
-.footer-brand { display: flex; gap: .9rem; max-width: 420px; }
-.footer-brand strong { color: #fff; font-size: 1.05rem; }
-.footer-brand p { margin-top: .4rem; font-size: .85rem; color: rgba(255, 255, 255, .6); }
+.footer-brand { display: flex; flex-direction: column; gap: .8rem; max-width: 420px; }
+.footer-logo {
+  height: 34px;
+  width: auto;
+  align-self: flex-start;
+  background: rgba(255, 255, 255, .92);
+  border-radius: 8px;
+  padding: .35rem .6rem;
+}
+.footer-brand p { font-size: .85rem; color: rgba(255, 255, 255, .6); }
 
 .footer-badges {
   display: flex;

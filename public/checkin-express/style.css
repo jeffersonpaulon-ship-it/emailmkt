@@ -498,7 +498,17 @@ ul { list-style: none; }
 
 .price-icon { font-size: 1.6rem; margin-bottom: .6rem; }
 .price-card h3 { font-size: 1.3rem; font-weight: 800; color: var(--ink); }
-.price-desc { color: var(--muted); font-size: .88rem; margin-top: .25rem; margin-bottom: 1.3rem; }
+.plan-scope {
+  display: inline-block;
+  margin-top: .55rem;
+  padding: .3rem .75rem;
+  border-radius: 999px;
+  background: #e8effe;
+  color: var(--blue-600);
+  font-size: .76rem;
+  font-weight: 700;
+}
+.price-desc { color: var(--muted); font-size: .88rem; margin-top: .5rem; margin-bottom: 1.3rem; }
 
 .price-value {
   font-size: 2.3rem;
